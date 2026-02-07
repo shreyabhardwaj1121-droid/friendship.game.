@@ -1,183 +1,196 @@
-# friendship.game.
-a fun interactive friendship button game made using html css and javascript...
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Friendship Button Game</title>
-
-<style>
-    * {
-        box-sizing: border-box;
-    }
-
-    body {
-        margin: 0;
-        padding: 0;
-        height: 100vh;
-        font-family: 'Comic Sans MS', cursive;
-        background: linear-gradient(-45deg, #ff9a9e, #fad0c4, #a1c4fd, #c2e9fb);
-        background-size: 400% 400%;
-        animation: bgMove 10s ease infinite;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        overflow: hidden;
-    }
-
-    @keyframes bgMove {
-        0% { background-position: 0% 50%; }
-        50% { background-position: 100% 50%; }
-        100% { background-position: 0% 50%; }
-    }
-
-    .game-box {
-        background: linear-gradient(135deg, #ffffff, #f3f9ff);
-        border-radius: 30px;
-        padding: 35px;
-        width: 340px;
-        text-align: center;
-        box-shadow: 0 25px 50px rgba(0,0,0,0.25);
-        position: relative;
-        animation: pop 1s ease;
-    }
-
-    @keyframes pop {
-        from { transform: scale(0.8); opacity: 0; }
-        to { transform: scale(1); opacity: 1; }
-    }
-
-    h1 {
-        margin: 0;
-        font-size: 28px;
-        background: linear-gradient(90deg, #ff6a00, #ee0979, #00c6ff);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-    }
-
-    p {
-        margin-top: 10px;
-        font-size: 16px;
-        color: #444;
-    }
-
-    .message {
-        margin: 25px 0;
-        font-size: 19px;
-        min-height: 45px;
-        font-weight: bold;
-        color: #222;
-        transition: 0.3s;
-    }
-
-    .buttons {
-        display: flex;
-        justify-content: space-around;
-        margin-top: 20px;
-    }
-
-    button {
-        border: none;
-        padding: 14px 26px;
-        font-size: 16px;
-        border-radius: 40px;
-        cursor: pointer;
-        font-weight: bold;
-        transition: 0.3s;
-    }
-
-    #yesBtn {
-        background: linear-gradient(135deg, #00f2fe, #4facfe);
-        color: #fff;
-        box-shadow: 0 0 15px #4facfe;
-    }
-
-    #noBtn {
-        background: linear-gradient(135deg, #ff0844, #ffb199);
-        color: #fff;
-        box-shadow: 0 0 15px #ff0844;
-    }
-
-    button:hover {
-        transform: scale(1.15) rotate(-2deg);
-    }
-
-    /* doodles */
-    .doodle {
-        position: absolute;
-        font-size: 45px;
-        animation: float 4s ease-in-out infinite;
-        opacity: 0.7;
-    }
-
-    @keyframes float {
-        0%, 100% { transform: translateY(0); }
-        50% { transform: translateY(-12px); }
-    }
-
-    .d1 { top: -20px; left: -20px; }
-    .d2 { bottom: -20px; right: -20px; }
-    .d3 { top: -25px; right: 30px; }
-    .d4 { bottom: -25px; left: 30px; }
-</style>
-</head>
-
-<body>
-
-<div class="game-box">
-    <div class="doodle d1">🌈</div>
-    <div class="doodle d2">✨</div>
-    <div class="doodle d3">🎨</div>
-    <div class="doodle d4">🤝</div>
-
-    <h1>Friendship Test 😎</h1>
-    <p>No love, only bestie energy 💥</p>
-
-    <div class="message" id="msg">
-        Choose wisely 👀
-    </div>
-
-    <div class="buttons">
-        <button id="yesBtn">YES</button>
-        <button id="noBtn">NO</button>
-    </div>
-</div>
-
-<script>
-    let noClicks = 0;
-    let yesClicks = 0;
-
-    const noMessages = [
-        "Try again 😏",
-        "Better luck next time 😌",
-        "I'm not convinced 🤨",
-        "Nope ❌",
-        "Try again 🙃",
-        "Do it again 😈"
-    ];
-
-    const yesMessages = [
-        "Ohhh really? 👀",
-        "Oh no 😳",
-        "Haha caught you 😎 Friendship confirmed!"
-    ];
-
-    const msgBox = document.getElementById("msg");
-
-    document.getElementById("noBtn").addEventListener("click", () => {
-        msgBox.innerText = noMessages[noClicks % noMessages.length];
-        noClicks++;
-    });
-
-    document.getElementById("yesBtn").addEventListener("click", () => {
-        if (yesClicks < yesMessages.length) {
-            msgBox.innerText = yesMessages[yesClicks];
-            yesClicks++;
-        } else {
-            msgBox.innerText = "Game over 😜 Reload to play again!";
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Friendship Button Game</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #ffeaa7, #fab1a0, #a29bfe, #fd79a8);
+            background-size: 400% 400%;
+            animation: gradientShift 10s ease infinite;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            position: relative;
         }
-    });
-</script>
 
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .doodle {
+            position: absolute;
+            font-size: 2rem;
+            animation: float 6s ease-in-out infinite;
+            opacity: 0.7;
+        }
+
+        .doodle:nth-child(odd) { animation-delay: -2s; }
+        .doodle:nth-child(even) { animation-delay: -4s; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        .heart { color: #ff7675; }
+        .star { color: #fdcb6e; }
+        .sparkle { color: #a29bfe; }
+        .smiley { color: #fd79a8; }
+        .cloud { color: #74b9ff; }
+        .arrow { color: #00b894; }
+        .sticker { color: #e17055; }
+
+        .game-container {
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            max-width: 500px;
+            position: relative;
+            z-index: 1;
+        }
+
+        h1 {
+            color: #2d3436;
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .buttons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        button {
+            background: linear-gradient(45deg, #ffeaa7, #fab1a0);
+            border: none;
+            border-radius: 15px;
+            padding: 15px 20px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #2d3436;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: left 0.5s;
+        }
+
+        button:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            background: linear-gradient(45deg, #fab1a0, #ffeaa7);
+        }
+
+        button:hover::before {
+            left: 100%;
+        }
+
+        button:active {
+            transform: translateY(0);
+        }
+
+        #message {
+            font-size: 1.5rem;
+            color: #2d3436;
+            margin-top: 20px;
+            min-height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <!-- Floating Doodle Elements -->
+    <div class="doodle heart" style="top: 10%; left: 10%;">♥</div>
+    <div class="doodle star" style="top: 20%; right: 15%;">★</div>
+    <div class="doodle sparkle" style="bottom: 30%; left: 20%;">✨</div>
+    <div class="doodle smiley" style="top: 40%; right: 10%;">☺</div>
+    <div class="doodle cloud" style="bottom: 20%; left: 30%;">☁</div>
+    <div class="doodle arrow" style="top: 60%; right: 20%;">➤</div>
+    <div class="doodle sticker" style="bottom: 10%; right: 30%;">🏷</div>
+    <div class="doodle heart" style="top: 70%; left: 15%;">♥</div>
+    <div class="doodle star" style="bottom: 40%; right: 5%;">★</div>
+    <div class="doodle sparkle" style="top: 30%; left: 40%;">✨</div>
+
+    <div class="game-container">
+        <h1>🌟 Friendship Button Game! 🌟</h1>
+        <p>Click the buttons to see what our friendship really is... or is it? 😉</p>
+        <div class="buttons">
+            <button id="best-friends">Best Friends</button>
+            <button id="just-friends">Just Friends</button>
+            <button id="enemies">Enemies</button>
+            <button id="idk">I Don’t Know</button>
+        </div>
+        <div id="message">What do you think we are? Click to find out! 🎉</div>
+    </div>
+
+    <script>
+        const buttons = document.querySelectorAll('button');
+        const message = document.getElementById('message');
+        const clickCounts = {
+            'best-friends': 0,
+            'just-friends': 0,
+            'enemies': 0,
+            'idk': 0
+        };
+
+        const messages = {
+            1: [
+                "Try again, buddy! 😏",
+                "Nope, keep clicking! 🤔",
+                "Not quite yet! 😉",
+                "Hmm, maybe not... 😜"
+            ],
+            2: [
+                "Are you sure? Friendship is tricky! 😂",
+                "Playful rejection: We're not there yet! 😅",
+                "Confusion overload! What are we? 🤨",
+                "Just friends? Or frenemies? 😈"
+            ],
+            3: [
+                "Doubt creeps in... Is this real? 🤯",
+                "Suspense! One more click? 😲",
+                "Funny doubt: Besties or just vibes? 😂",
+                "I don't know either! Keep guessing! 🤪"
+            ]
+        };
+
+        buttons.forEach(button => {
+            button.addEventListener('click', () => {
+                const id = button.id;
+                clickCounts[id]++;
+                const cycle = (clickCounts[id] - 1) % 3 + 1; // Cycles 1, 2, 3, 1, 2, 3...
+                const msgIndex = Math.floor(Math.random() * messages[cycle].length);
+                message.textContent = messages[cycle][msgIndex];
+            });
+        });
+    </script>
 </body>
 </html>
